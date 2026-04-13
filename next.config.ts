@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
@@ -6,12 +6,16 @@ const nextConfig: NextConfig = {
     qualities: [75, 80],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "i8qy5y6gxkdgdcv9.public.blob.vercel-storage.com",
-        pathname: "/storefront/**",
+        protocol: 'https',
+        hostname: 'i8qy5y6gxkdgdcv9.public.blob.vercel-storage.com',
+        pathname: '/storefront/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
