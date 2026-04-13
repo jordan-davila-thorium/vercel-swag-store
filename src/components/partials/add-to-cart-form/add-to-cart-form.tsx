@@ -6,7 +6,12 @@ import type { Product } from '@/services/types'
 import QuantitySelector from '@/components/ui/quantity-selector'
 import SubmitButton from '@/components/ui/submit-button'
 
-export default function AddToCartForm({ product }: { product: Product }) {
+interface AddToCartFormProps {
+  product: Product
+  inStock?: boolean
+}
+
+export default function AddToCartForm({ product, inStock = true }: AddToCartFormProps) {
   const [state, formAction] = useActionState(addToCart.bind(null, product.id), {
     success: false,
     message: '',
@@ -16,7 +21,7 @@ export default function AddToCartForm({ product }: { product: Product }) {
     <form action={formAction}>
       <QuantitySelector />
       <div className="mt-4">
-        <SubmitButton />
+        <SubmitButton inStock={inStock} />
       </div>
       {state.message && (
         <p className={`mt-2 text-sm ${state.success ? 'text-green-500' : 'text-red-500'}`}>

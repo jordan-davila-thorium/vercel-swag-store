@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import { getProduct } from '@/services/api'
-import AddToCartForm from '@/components/partials/add-to-cart-form'
+import AddToCartFormWithStock from '@/components/partials/add-to-cart-form/add-to-cart-form-with-stock'
 import ProductImage from '@/components/partials/product-image'
 import ProductInfo from '@/components/partials/product-info'
 import StockIndicator from '@/components/ui/stock-indicator'
@@ -42,7 +42,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </Suspense>
           </div>
           <div className="mt-6">
-            <AddToCartForm product={product} />
+            <Suspense
+              fallback={<div className="h-[42px] w-full animate-pulse rounded-md bg-muted" />}
+            >
+              <AddToCartFormWithStock product={product} />
+            </Suspense>
           </div>
         </div>
       </div>
