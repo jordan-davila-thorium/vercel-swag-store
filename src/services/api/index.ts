@@ -1,4 +1,5 @@
 export { addItemToCart } from './add-item-to-cart'
+export { CART_TOKEN_COOKIE } from './client'
 export { createCart } from './create-cart'
 export { getCart } from './get-cart'
 export { getCategories } from './get-categories'

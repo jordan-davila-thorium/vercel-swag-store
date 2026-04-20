@@ -1,12 +1,12 @@
 import { cookies } from 'next/headers'
-import { getCart } from '@/services/api'
+import { CART_TOKEN_COOKIE, getCart } from '@/services/api'
 import CartBadge from '@/components/ui/cart-badge'
 import Link from '@/components/ui/link'
 import HeaderNav from './header-nav'
 
 export default async function Header() {
   const cookieStore = await cookies()
-  const cartToken = cookieStore.get('cart-token')?.value
+  const cartToken = cookieStore.get(CART_TOKEN_COOKIE)?.value
   let cartCount = 0
 
   if (cartToken) {

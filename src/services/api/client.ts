@@ -3,6 +3,7 @@ import type { ApiResponse } from '@/services/types'
 
 export const API_BASE = process.env.API_BASE_URL!
 export const BYPASS_TOKEN = process.env.API_BYPASS_TOKEN!
+export const CART_TOKEN_COOKIE = 'cart-token'
 
 export async function client<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {

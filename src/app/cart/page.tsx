@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 import Link from 'next/link'
-import { getCart } from '@/services/api'
+import { CART_TOKEN_COOKIE, getCart } from '@/services/api'
 import CartItems from '@/components/blocks/cart-items'
 import CartSummary from '@/components/blocks/cart-summary'
 
@@ -8,7 +8,7 @@ export const metadata = { title: 'Cart' }
 
 export default async function CartPage() {
   const cookieStore = await cookies()
-  const cartToken = cookieStore.get('cart-token')?.value
+  const cartToken = cookieStore.get(CART_TOKEN_COOKIE)?.value
   const cart = cartToken ? await getCart(cartToken) : null
 
   if (!cart || cart.items.length === 0) {
