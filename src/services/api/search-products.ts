@@ -1,5 +1,5 @@
 import type { Product } from '@/services/types'
-import { apiFetch } from './client'
+import { client } from './client'
 
 export async function searchProducts(
   query?: string,
@@ -10,5 +10,5 @@ export async function searchProducts(
   if (query) params.set('search', query)
   if (category) params.set('category', category)
   params.set('limit', String(limit))
-  return apiFetch<Product[]>(`/products?${params.toString()}`)
+  return client<Product[]>(`/products?${params.toString()}`)
 }

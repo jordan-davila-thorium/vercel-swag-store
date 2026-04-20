@@ -4,7 +4,7 @@ import type { ApiResponse } from '@/services/types'
 export const API_BASE = process.env.API_BASE_URL!
 export const BYPASS_TOKEN = process.env.API_BYPASS_TOKEN!
 
-export async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
+export async function client<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
     headers: {
@@ -13,14 +13,10 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
     },
   })
 
-  if (!res.ok) {
-    throw new Error(`API error ${res.status}: ${res.statusText}`)
-  }
+  if (!res.ok) throw new Error(`API error ${res.status}: ${res.statusText}`)
 
   const json = (await res.json()) as ApiResponse<T>
-  if (!json.success) {
-    throw new Error('API returned unsuccessful response')
-  }
+  if (!json.success) throw new Error('API returned unsuccessful response')
 
   return json.data
 }

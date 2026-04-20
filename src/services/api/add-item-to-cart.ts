@@ -1,12 +1,12 @@
 import type { Cart } from '@/services/types'
-import { apiFetch } from './client'
+import { client } from './client'
 
 export async function addItemToCart(
   token: string,
   productId: string,
   quantity: number
 ): Promise<Cart> {
-  return apiFetch<Cart>('/cart', {
+  return client<Cart>('/cart', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

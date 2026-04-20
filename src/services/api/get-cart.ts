@@ -1,9 +1,9 @@
 import type { Cart } from '@/services/types'
-import { apiFetch } from './client'
+import { client } from './client'
 
 export async function getCart(token: string): Promise<Cart | null> {
   try {
-    return await apiFetch<Cart>('/cart', {
+    return await client<Cart>('/cart', {
       headers: { 'x-cart-token': token },
     })
   } catch {
