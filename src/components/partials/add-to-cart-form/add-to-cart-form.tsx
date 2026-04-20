@@ -3,6 +3,7 @@
 import { useActionState } from 'react'
 import { addToCart } from '@/services/actions'
 import type { Product } from '@/services/types'
+import { cn } from '@/services/utils'
 import QuantitySelector from '@/components/ui/quantity-selector'
 import SubmitButton from '@/components/ui/submit-button'
 
@@ -24,7 +25,7 @@ export default function AddToCartForm({ product, inStock = true }: AddToCartForm
         <SubmitButton inStock={inStock} />
       </div>
       {state.message && (
-        <p className={`mt-2 text-sm ${state.success ? 'text-green-500' : 'text-red-500'}`}>
+        <p className={cn('mt-2 text-sm', state.success ? 'text-green-500' : 'text-red-500')}>
           {state.message}
         </p>
       )}
